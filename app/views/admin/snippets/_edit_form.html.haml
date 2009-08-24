@@ -1,0 +1,14 @@
+- if @snippet.new_record? || !@snippet.file_system_resource?
+  = defaults[:edit_form]
+- else
+  %p File System Resources are not editable in the admin UI. You'll need to edit them on the file system.
+  .form-area
+    %p
+      %strong Snippet Location: 
+      = @snippet.path
+    %p
+      %strong Content
+    %div{:overflow => "auto"}
+      %pre
+        =h @snippet.content
+  %p= link_to "Return to Layouts", admin_snippets_path

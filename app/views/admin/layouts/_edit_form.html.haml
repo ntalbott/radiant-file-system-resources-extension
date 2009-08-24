@@ -1,0 +1,14 @@
+- if @layout.new_record? || !@layout.file_system_resource?
+  = defaults[:edit_form]
+- else
+  %p File System Resources are not editable in the admin UI. You'll need to edit them on the file system.
+  .form-area
+    %p
+      %strong Layout Location: 
+      = @layout.path
+    %p
+      %strong Content
+    %div{:overflow => "auto"}
+      %pre
+        =h @layout.content
+  %p= link_to "Return to Layouts", admin_layouts_path
