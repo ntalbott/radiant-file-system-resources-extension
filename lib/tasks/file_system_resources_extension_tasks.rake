@@ -8,6 +8,7 @@ namespace :radiant do
         if ENV["VERSION"]
           FileSystemResourcesExtension.migrator.migrate(ENV["VERSION"].to_i)
         else
+          p FileSystemResourcesExtension.migrations_path
           FileSystemResourcesExtension.migrator.migrate
         end
       end
@@ -29,14 +30,11 @@ namespace :radiant do
           mkdir_p RAILS_ROOT + directory, :verbose => false
           cp file, RAILS_ROOT + path, :verbose => false
         end
-      end
-      
-      desc "Sets up directory structure for file system resources."
-      task :init => :environment do
+
         %w(layouts snippets).each do |dir|
           FileUtils.mkdir_p(RAILS_ROOT + "/radiant/#{dir}")
         end
-      end  
+      end
       
       desc "Registers file system resources in the database (needed only when added/removed, not on edit)."
       task :register => :environment do
