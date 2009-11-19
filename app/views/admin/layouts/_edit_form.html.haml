@@ -1,7 +1,10 @@
 - if @layout.new_record? || !@layout.file_system_resource?
   = defaults[:edit_form]
 - else
-  %p File System Resources are not editable in the admin UI. You'll need to edit them on the file system.
+  - if admin?
+    %p File System Resources are not editable in the admin UI. You'll need to edit them on the file system.
+  - else
+    %p This is a standard Layout and is not editable.
   .form-area
     %p
       %strong Layout Location: 
