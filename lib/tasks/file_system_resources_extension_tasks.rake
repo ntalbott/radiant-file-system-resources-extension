@@ -48,7 +48,7 @@ namespace :radiant do
               puts "Skipped #{klass.name} #{filename} (already registered)."
               next
             else
-              name = (klass == Layout ? "[FS] #{filename}" : "fs_#{filename}")
+              name = "#{filename}"
               klass.create!(:name => name, :filename => filename, :file_system_resource => true)
               puts "Registered #{klass.name} #{filename}."
             end
