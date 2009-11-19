@@ -8,7 +8,7 @@
       = @layout.path
     %p
       %strong Content
-    %div{:overflow => "auto"}
+    %div{:style => 'overflow: auto;'}
       %pre
         =h @layout.content
   %p= link_to "Return to Layouts", admin_layouts_path
