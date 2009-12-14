@@ -22,4 +22,4 @@ RAILS_ROOT/radiant/snippets/<your-snippet-name>.radius
 <pre>
 rake radiant:extensions:file_system_resources:register
 </pre>
-* Your newly created layouts/snippets are now available to use in admin panel.
+* Your newly created layouts/snippets are now available to use in admin panel.g
