@@ -1,0 +1,25 @@
+h1. File System Resources
+
+This enables the use of Radius-based layouts and snippets on the file system. Layouts go in RAILS_ROOT/radiant/layouts, and snippets go in RAILS_ROOT/radiant/snippets.
+
+h2. Quickstart
+
+h3. Install it
+* Install 
+<pre> git submodule add git://github.com/saturnflyer/radiant-file-system-resources-extension.git vendor/extensions/file_system_resources
+</pre>
+* Migrate it
+<pre>rake radiant:extensions:file_system_resources:migrate</pre>
+* Restart webserver
+
+h3. Use it
+* Create your file-based layouts/snippets
+<pre>
+RAILS_ROOT/radiant/layouts/<your-layout-name>.radius
+RAILS_ROOT/radiant/snippets/<your-snippet-name>.radius
+</pre>
+* Register your layouts/snippets.  (needed only when add/remove, not on edit)
+<pre>
+rake radiant:extensions:file_system_resources:register
+</pre>
+* Your newly created layouts/snippets are now available to use in admin panel.
