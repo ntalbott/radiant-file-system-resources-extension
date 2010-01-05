@@ -8,6 +8,10 @@ module FileSystemResource
           self[:content]
         end
       end
+      
+      def name
+        file_system_resource? ? self[:name] + ' (standard)' : self[:name]
+      end
 
       def path
         RAILS_ROOT + "/radiant/#{self.class.name.downcase.pluralize}/#{filename}.radius"
