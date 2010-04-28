@@ -10,7 +10,7 @@ module FileSystemResource
       end
       
       def name
-        file_system_resource? ? self[:name] + ' (standard)' : self[:name]
+        file_system_resource? ? self[:name] + '_fs' : self[:name]
       end
 
       def path
