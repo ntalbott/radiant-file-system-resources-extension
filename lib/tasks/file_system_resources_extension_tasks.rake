@@ -55,7 +55,7 @@ namespace :radiant do
           end          
           klass.find_all_by_file_system_resource(true).reject{|e| seen.include?(e.filename)}.each do |e|
             e.destroy
-            puts "Removed #{klass.name }#{e.filename} (no longer exists on file system)."
+            puts "Removed #{klass.name} #{e.filename} (no longer exists on file system)."
           end
         end
       end
