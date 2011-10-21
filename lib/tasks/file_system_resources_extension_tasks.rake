@@ -30,7 +30,14 @@ namespace :radiant do
           mkdir_p RAILS_ROOT + directory, :verbose => false
           cp file, RAILS_ROOT + path, :verbose => false
         end
-
+        unless FileSystemResourcesExtension.root.starts_with? RAILS_ROOT # don't need to copy vendored tasks
+          puts "Copying rake tasks from FileSystemResourcesExtension"
+          local_tasks_path = File.join(RAILS_ROOT, %w(lib tasks))
+          mkdir_p local_tasks_path, :verbose => false
+          Dir[File.join FileSystemResourcesExtension.root, %w(lib tasks *.rake)].each do |file|
+            cp file, local_tasks_path, :verbose => false
+          end
+        end
         %w(layouts snippets).each do |dir|
           FileUtils.mkdir_p(RAILS_ROOT + "/radiant/#{dir}")
         end

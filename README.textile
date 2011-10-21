@@ -5,13 +5,24 @@ This enables the use of Radius-based layouts and snippets on the file system. La
 h2. Quickstart
 
 h3. Install it
-* Install 
-<pre>git submodule add git://github.com/saturnflyer/radiant-file-system-resources-extension.git vendor/extensions/file_system_resources</pre>
-* Migrate it
-<pre>rake radiant:extensions:file_system_resources:migrate</pre>
-* Restart webserver
+
+h4. Radiant ~1.0
+
+1. add <code>gem 'radiant-file_system_resources-extension'</code>
+   to your Gemfile
+2. Run <code>rake radiant:extensions:update_all</code> to initialise
+   the extension
+3. Run <code>rake radiant:extensions:file_system_resources:migrate</code>
+4. Restart Webserver
+
+h4. Older versions of Radiant (without Gemfile)
+
+1. <code>git submodule add git://github.com/saturnflyer/radiant-file-system-resources-extension.git vendor/extensions/file_system_resources</code>
+2. Migrate it: <code>rake radiant:extensions:file_system_resources:migrate</code>
+3. Restart webserver
 
 h3. Use it
+
 * Create your file-based layouts/snippets
 <pre>RAILS_ROOT/radiant/layouts/your-layout-name.radius
 RAILS_ROOT/radiant/snippets/your-snippet-name.radius</pre>

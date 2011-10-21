@@ -1,10 +1,10 @@
-# Uncomment this if you reference any of your controllers in activate
-# require_dependency 'application'
+# -*- encoding: utf-8 -*-
+require 'radiant-file_system_resources-extension'
 
 class FileSystemResourcesExtension < Radiant::Extension
-  version "1.1"
-  description "Adds support file system based layouts and snippets."
-  url "http://terralien.com/"
+  version RadiantFileSystemResourcesExtension::VERSION
+  description RadiantFileSystemResourcesExtension::DESCRIPTION
+  url RadiantFileSystemResourcesExtension::URL
   
   def activate
     Layout.send(:include, FileSystemResource)
