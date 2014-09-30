@@ -1,3 +1,0 @@
-= File System Resources
-
-This enables the use of Radius-based layouts and snippets on the file system. Layouts go in RAILS_ROOT/radiant/layouts, and snippets go in RAILS_ROOT/radiant/snippets.

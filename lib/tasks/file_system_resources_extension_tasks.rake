@@ -30,7 +30,14 @@ namespace :radiant do
           mkdir_p RAILS_ROOT + directory, :verbose => false
           cp file, RAILS_ROOT + path, :verbose => false
         end
-
+        unless FileSystemResourcesExtension.root.starts_with? RAILS_ROOT # don't need to copy vendored tasks
+          puts "Copying rake tasks from FileSystemResourcesExtension"
+          local_tasks_path = File.join(RAILS_ROOT, %w(lib tasks))
+          mkdir_p local_tasks_path, :verbose => false
+          Dir[File.join FileSystemResourcesExtension.root, %w(lib tasks *.rake)].each do |file|
+            cp file, local_tasks_path, :verbose => false
+          end
+        end
         %w(layouts snippets).each do |dir|
           FileUtils.mkdir_p(RAILS_ROOT + "/radiant/#{dir}")
         end
@@ -48,14 +55,14 @@ namespace :radiant do
               puts "Skipped #{klass.name} #{filename} (already registered)."
               next
             else
-              name = (klass == Layout ? "[FS] #{filename}" : "fs_#{filename}")
+              name = "#{filename}"
               klass.create!(:name => name, :filename => filename, :file_system_resource => true)
               puts "Registered #{klass.name} #{filename}."
             end
           end          
           klass.find_all_by_file_system_resource(true).reject{|e| seen.include?(e.filename)}.each do |e|
             e.destroy
-            puts "Removed #{klass.name }#{e.filename} (no longer exists on file system)."
+            puts "Removed #{klass.name} #{e.filename} (no longer exists on file system)."
           end
         end
       end
